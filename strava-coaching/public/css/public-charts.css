@@ -1,0 +1,88 @@
+/**
+ * Public Chart Styles for Strava Coaching Plugin
+ * File: public/css/public-charts.css
+ */
+
+/* Chart Containers */
+.strava-progress-chart-container,
+.strava-activity-chart-container {
+    position: relative;
+    background: white;
+    border: 1px solid var(--strava-border, #E1E4E8);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.strava-progress-chart,
+.strava-activity-chart,
+.strava-chart {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* Mini Charts */
+.mentee-mini-chart {
+    width: 100%;
+    height: 100%;
+}
+
+/* Chart Loading State */
+.chart-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--strava-orange, #FC4C02);
+    font-weight: 600;
+}
+
+.chart-loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 3px solid rgba(252, 76, 2, 0.3);
+    border-top-color: var(--strava-orange, #FC4C02);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Chart Error State */
+.chart-error {
+    text-align: center;
+    padding: 40px;
+    color: #dc3545;
+    background: #f8d7da;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+/* Chart Sections in Dashboard */
+.strava-charts-section,
+.strava-progress-section {
+    position: relative;
+}
+
+.strava-charts-section .strava-chart,
+.strava-progress-section .strava-chart {
+    max-height: 400px;
+}
+
+/* Responsive Chart Containers */
+@media (max-width: 768px) {
+
+    .strava-progress-chart-container,
+    .strava-activity-chart-container {
+        padding: 15px;
+    }
+}

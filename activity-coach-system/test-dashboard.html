@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACS Dashboard Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; margin: 5px; background: #ff6124; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #ff7a47; }
+    </style>
+</head>
+<body>
+    <h1>Activity Coach System - Dashboard Test</h1>
+    
+    <div class="test-section">
+        <h2>JavaScript Function Test</h2>
+        <p>Click the buttons below to test if the JavaScript functions are working:</p>
+        
+        <button onclick="testFunction('viewMenteeAnalytics')">Test viewMenteeAnalytics</button>
+        <button onclick="testFunction('createPlanFor')">Test createPlanFor</button>
+        <button onclick="testFunction('scorePlan')">Test scorePlan</button>
+        <button onclick="testFunction('trackProgress')">Test trackProgress</button>
+        <button onclick="testFunction('submitPlanScore')">Test submitPlanScore</button>
+        
+        <div id="test-results" style="margin-top: 20px; padding: 10px; background: #f5f5f5;"></div>
+    </div>
+
+    <script>
+        function testFunction(funcName) {
+            const resultsDiv = document.getElementById('test-results');
+            
+            if (typeof window[funcName] === 'function') {
+                resultsDiv.innerHTML = `<p style="color: green;">✅ ${funcName} is available and working!</p>`;
+                console.log(`${funcName} is available:`, window[funcName]);
+            } else {
+                resultsDiv.innerHTML = `<p style="color: red;">❌ ${funcName} is NOT available!</p>`;
+                console.error(`${funcName} is not available`);
+            }
+        }
+        
+        // Check all functions on page load
+        window.addEventListener('load', function() {
+            const functions = ['viewMenteeAnalytics', 'createPlanFor', 'scorePlan', 'trackProgress', 'submitPlanScore'];
+            const resultsDiv = document.getElementById('test-results');
+            
+            let allAvailable = true;
+            let status = '<h3>Function Status:</h3>';
+            
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    status += `<p style="color: green;">✅ ${func}: Available</p>`;
+                } else {
+                    status += `<p style="color: red;">❌ ${func}: Missing</p>`;
+                    allAvailable = false;
+                }
+            });
+            
+            if (allAvailable) {
+                status += '<p style="color: green; font-weight: bold;">🎉 All functions are available!</p>';
+            } else {
+                status += '<p style="color: red; font-weight: bold;">⚠️ Some functions are missing!</p>';
+            }
+            
+            resultsDiv.innerHTML = status;
+        });
+    </script>
+</body>
+</html> 

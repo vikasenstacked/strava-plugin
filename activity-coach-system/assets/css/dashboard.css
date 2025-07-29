@@ -1,0 +1,425 @@
+:root {
+  --acs-primary: #ff6124;
+  --acs-text: #3b4051;
+  --acs-bg: #fff;
+  --acs-card-radius: 12px;
+  --acs-card-shadow: 0 2px 8px rgba(59, 64, 81, 0.06);
+  --acs-border: #ccc;
+}
+
+body.acs-dashboard {
+  background: var(--acs-bg);
+  color: var(--acs-text);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+}
+
+.acs-card {
+  background: var(--acs-bg);
+  border-radius: var(--acs-card-radius);
+  box-shadow: var(--acs-card-shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #f5f5f5;
+}
+
+.acs-btn-primary {
+  background: var(--acs-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.acs-btn-primary:hover {
+  background: #ff7a47;
+}
+
+.acs-heading {
+  color: var(--acs-text);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.acs-label {
+  color: var(--acs-text);
+  font-weight: 500;
+}
+
+input[type="text"], input[type="number"], select, textarea {
+  border: 1px solid var(--acs-border);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: #fafbfc;
+  color: var(--acs-text);
+  margin-bottom: 1rem;
+}
+
+.acs-modal {
+  background: var(--acs-bg);
+  border-radius: var(--acs-card-radius);
+  box-shadow: var(--acs-card-shadow);
+  padding: 2rem;
+  border: 1px solid #eee;
+}
+
+.acs-loader {
+  background: rgba(255, 97, 36, 0.08);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enhanced styles for multiple activities per day */
+.activity-row {
+  display: inline-block;
+  /*grid-template-columns: 2fr 1fr 1fr 1fr 2fr 80px;*/
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: start;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  transition: border-color 0.2s;
+}
+
+.activity-row:hover {
+  border-color: var(--acs-primary);
+}
+
+.activity-row input[type="text"],
+.activity-row input[type="number"],
+.activity-row textarea {
+  margin-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.activity-row textarea {
+  font-size: 0.9rem;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.activity-row .activity-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.activity-row .activity-buttons button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.activity-row .activity-buttons .add-btn {
+  background: #28a745;
+  color: white;
+}
+
+.activity-row .activity-buttons .add-btn:hover {
+  background: #218838;
+}
+
+.activity-row .activity-buttons .remove-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.activity-row .activity-buttons .remove-btn:hover {
+  background: #c82333;
+}
+
+.day-container {
+  margin-bottom: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #f9f9f9;
+}
+
+.day-container h5 {
+  margin: 0 0 1rem 0;
+  color: var(--acs-primary);
+  font-size: 1.1rem;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .activity-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+  
+  .activity-row .activity-buttons {
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+  
+  .activity-row textarea {
+    min-height: 50px;
+  }
+}
+
+/* Training plan display styles */
+.training-plan-day {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #f9f9f9;
+  margin-bottom: 1rem;
+}
+
+.training-plan-day h5 {
+  margin: 0 0 1rem 0;
+  color: var(--acs-primary);
+  font-size: 1.1rem;
+}
+
+.training-plan-activity {
+  background: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 0.75rem;
+}
+
+.training-plan-activity:last-child {
+  margin-bottom: 0;
+}
+
+.activity-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.activity-notes {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .activity-details {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* Weekly activities row for coach dashboard (legacy support) */
+#acs-activity-days > div {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+#acs-activity-days label.acs-label {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#acs-activity-days input[type="text"],
+#acs-activity-days input[type="number"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  #acs-activity-days > div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  
+  #acs-activity-days label.acs-label {
+    margin-bottom: 0.25rem;
+  }
+  
+  #acs-activity-days input[type="text"],
+  #acs-activity-days input[type="number"] {
+    height: 38px;
+  }
+}
+
+/* Updated CSS for original Weekly Activities layout with notes field */
+/* Add this to your dashboard.css file, replacing the existing #acs-activity-days styles */
+
+#acs-activity-days > div {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1.5fr; /* Added 6th column for notes */
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: start; /* Changed from center to start to accommodate textarea */
+}
+
+#acs-activity-days label.acs-label {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  height: 40px; /* Match input height */
+}
+
+#acs-activity-days input[type="text"],
+#acs-activity-days input[type="number"],
+#acs-activity-days textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+#acs-activity-days textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem;
+  resize: vertical;
+  min-height: 40px;
+}
+/* Add this CSS to your dashboard.css file for better multiple activities display */
+
+/* Plan details container */
+#vmp-plan-details {
+    margin-top: 1rem;
+}
+
+/* Day containers */
+.plan-day-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #f9f9f9;
+    margin-bottom: 1rem;
+}
+
+.plan-day-header {
+    margin: 0 0 1rem 0;
+    color: #ff6124;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Activity cards */
+.plan-activity-card {
+    background: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 0.75rem;
+    transition: box-shadow 0.2s;
+}
+
+.plan-activity-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.plan-activity-card:last-child {
+    margin-bottom: 0;
+}
+
+.plan-activity-number {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #ff6124;
+    font-size: 0.9rem;
+}
+
+.plan-activity-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.plan-activity-detail {
+    font-size: 0.9rem;
+}
+
+.plan-activity-detail strong {
+    display: block;
+    color: #3b4051;
+    margin-bottom: 0.25rem;
+}
+
+.plan-activity-notes {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-style: italic;
+    border-left: 3px solid #ff6124;
+    font-size: 0.9rem;
+}
+
+.plan-rest-day {
+    margin: 0;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .plan-activity-details {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+    
+    .plan-day-container {
+        padding: 0.75rem;
+    }
+    
+    .plan-activity-card {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .plan-activity-details {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+/* Mobile responsive - stack vertically on small screens */
+@media (max-width: 768px) {
+  #acs-activity-days > div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  
+  #acs-activity-days label.acs-label {
+    margin-bottom: 0.25rem;
+    height: auto;
+  }
+  
+  #acs-activity-days input[type="text"],
+  #acs-activity-days input[type="number"],
+  #acs-activity-days textarea {
+    min-height: 38px;
+  }
+}
